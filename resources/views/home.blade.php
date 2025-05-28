@@ -11,7 +11,7 @@
 <div style=" border: 3px solid;">
 
 <h2>Rejestracja</h2>
-<form action="/register" methood="POST">
+<form action="/register" methood="GETS">
 @csrf 
 <input type="text" placeholder="name">
 <input type="text" placeholder="email">
