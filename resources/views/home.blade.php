@@ -13,9 +13,9 @@
 <h2>Rejestracja</h2>
 <form action="/register" methood="GETS">
 @csrf 
-<input type="text" placeholder="name">
-<input type="text" placeholder="email">
-<input type="password" placeholder="password">
+<input type="text" name="name" placeholder="name">
+<input type="text" name="email" placeholder="email">
+<input type="password" name="password" placeholder="password">
 <button>Register</button>
 
 </form>
