@@ -33,5 +33,15 @@ Route::GET('/create-post', [PostController::class , 'create-post']);
 
 // funkcje odnosne dodawania wizyty lekarza 
 
+Route::GET('/make-appointment', [AddVisitController::class , 'make-appointment']);
 
 
+// obsługa linków a href
+
+Route::GET('/appointed-visits', function () {
+return view('appointed-visits');
+});
+
+Route::GET('/appoint-new-visit', function () {
+return view('appoint-new-visit');
+});

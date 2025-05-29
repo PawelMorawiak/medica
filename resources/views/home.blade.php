@@ -8,12 +8,19 @@
 </head>
 <body>
 
+
+
+
 <?--// uzytkownik zalogowany, wyswietlany ponizszy panel --?>
 
 @auth 
+<?--//naglowek plik header.blade.php --?>
+@include('header')
+<?--//naglowek plik header.blade.php --?>
 
 
 <h2> Jesteś zalogowany </h2>
+
 
 <form action="/logout" method="GET" >
   @csrf
@@ -45,10 +52,32 @@
 </form>
 </div>
 
+<?--//naglowek plik header.blade.php --?>
+@include('footer')
+<?--//naglowek plik header.blade.php --?>
 
-
-<?--// uzytkownik NIE zalogowany, wyswietlany ponizszy panel --?>
+<?--// uzytkownik NIE zalogowany, wyswietlany NIE ZALOGOWANY KONIEC ZALOGOWANE USERA ponizszy panel --?>
 @else
+
+
+
+
+<?--// LOGOWANIE --?>
+
+<div style=" border: 3px solid;">
+<h2>Logowanie</h2>
+<form action="/login" methood="GET">
+@csrf 
+<input type="text" name="loginname" placeholder="name">
+<input type="password" name="loginpassword" placeholder="password">
+<button>Zaloguj</button>
+</form>
+</div>
+
+
+
+
+
 
 <?--// REJESTRACJA --?>
 <div style=" border: 3px solid;">
@@ -60,18 +89,6 @@
 <input type="email" name="email" placeholder="email">
 <input type="password" name="password" placeholder="password">
 <button>Register</button>
-</form>
-</div>
-
-<?--// LOGOWANIE --?>
-
-<div style=" border: 3px solid;">
-<h2>Logowanie</h2>
-<form action="/login" methood="GET">
-@csrf 
-<input type="text" name="loginname" placeholder="name">
-<input type="password" name="loginpassword" placeholder="password">
-<button>Zaloguj</button>
 </form>
 </div>
 

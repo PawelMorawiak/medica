@@ -6,8 +6,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function createPost() {
+    public function createPost(Request $request) {
 
-        
+        $incomingFields = $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+            // zapis do bazy danych - znaki specjalne (strip_tags)
+        $incomingFields['title'] = strip_tags($incomingFields['title']);
+        $incomingFields['body'] = strip_tags($incomingFields['body']);
+        $incomingFields['user_id'] = auth()->id();
+        Post::create($incomingFields);
     }
 }
