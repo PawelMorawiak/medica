@@ -8,11 +8,11 @@
 </head>
 <body>
 
-
 <?--// uzytkownik zalogowany, wyswietlany ponizszy panel --?>
 
-
 @auth 
+
+
 <h2> Jesteś zalogowany </h2>
 
 <form action="/logout" method="GET" >
@@ -20,10 +20,31 @@
   <button> Wyloguj </button>
 </form>
 
-<form action="/make_appointment" method="GET" >
+<div style=" border: 3px solid;">
+<h2>dodawanie wizyty</h2>
+<form action="/make-appointment" method="GET" >
   @csrf
-  <button> UMÓW WIZYTĘ </button>
+<input type="text" name="add-doctor-for-appointment" placeholder="doctor">
+<input type="text" name="add-location-for-appointment" placeholder="location">
+<input type="text" name="add-time-for-appointment" placeholder="time">
+  <button> dodaj wizytę </button>
 </form>
+</body>
+</div>
+
+
+<?--// dodawanie postu formularz --?>
+
+<div style=" border: 3px solid;">
+<h2>dodawanie postu</h2>
+<form action="/create-post" methood="GET">
+@csrf 
+<input type="text" name="loginname" placeholder="name">
+<textarea name="body" col="20" row="20" placeholder="treść postu"></textarea> 
+<button>dodaj post</button>
+</form>
+</div>
+
 
 
 <?--// uzytkownik NIE zalogowany, wyswietlany ponizszy panel --?>
@@ -36,7 +57,7 @@
 <form action="/register" methood="GET">
 @csrf 
 <input type="text" name="name" placeholder="name">
-<input type="text" name="email" placeholder="email">
+<input type="email" name="email" placeholder="email">
 <input type="password" name="password" placeholder="password">
 <button>Register</button>
 </form>
@@ -52,15 +73,10 @@
 <input type="password" name="loginpassword" placeholder="password">
 <button>Zaloguj</button>
 </form>
-
 </div>
 
 
 @endauth
-
-
-
-
 
 </body>
 </html>
