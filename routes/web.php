@@ -18,6 +18,8 @@ Route::get('/login', function () {
 })->name('login');
 
 
-Route::get('/register', [UserController::class, 'register']
+Route::GET('/register', [UserController::class, 'register']);
 
-);
+Route::GET('/logout', [UserController::class, 'logout']);
+
+Route::GET('/login', [UserController::class, 'login']);
