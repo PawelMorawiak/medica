@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Post;
 
+
+
+///// stara funkcja - nie dziala
 class PostController extends Controller
 {
     public function createPost(Request $request) {
@@ -18,5 +21,28 @@ class PostController extends Controller
         $incomingFields['body'] = strip_tags($incomingFields['body']);
         $incomingFields['user_id'] = auth()->id();
         Post::create($incomingFields);
+        return redirect('/');
     }
+
+///// nowa funkcja  dziala
+public function create()
+{
+    return view('posts.create'); // zwraca formularz
+}
+
+public function store(Request $request)
+{
+
+            $incomingFields = $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+        $incomingFields['title'] = strip_tags($incomingFields['title']);
+        $incomingFields['body'] = strip_tags($incomingFields['body']);
+        $incomingFields['user_id'] = auth()->id();
+        Post::create($incomingFields);
+        return redirect('/');
+}
+
+
 }

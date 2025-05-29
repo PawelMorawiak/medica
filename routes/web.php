@@ -29,15 +29,27 @@ Route::GET('/login', [UserController::class, 'login']);
 
 // funkcje odnośne dodawanie postu
 
-Route::GET('/create-post', [PostController::class , 'create-post']);
+
+// druga próba 
+// Route::GET('/createPost', [PostController::class , 'createPost']);
+
+
+Route::get('/createPost', [PostController::class, 'create'])->name('posts.create');
+Route::post('/createPost', [PostController::class, 'store'])->name('posts.store');
 
 // funkcje odnosne dodawania wizyty lekarza 
 
 Route::GET('/make-appointment', [AddVisitController::class , 'make-appointment']);
 
 
-// obsługa linków a href
+// obsługa linków a href z header 
+Route::GET('/main-site', function () {
+return view('main-site');
+});
 
+Route::GET('/see-profile', function () {
+return view('see-profile');
+});
 Route::GET('/appointed-visits', function () {
 return view('appointed-visits');
 });
@@ -45,3 +57,13 @@ return view('appointed-visits');
 Route::GET('/appoint-new-visit', function () {
 return view('appoint-new-visit');
 });
+
+Route::GET('/seek-contact', function () {
+return view('seek-contact');
+});
+
+Route::GET('/logout-href', function () {
+return view('logout-href');
+});
+
+

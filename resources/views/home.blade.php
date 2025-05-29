@@ -40,17 +40,35 @@
 </div>
 
 
-<?--// dodawanie postu formularz --?>
+<?--// dodawanie postu formularz stara metoda --?>
 
 <div style=" border: 3px solid;">
 <h2>dodawanie postu</h2>
-<form action="/create-post" methood="GET">
+<form action="/createPost" methood="GET">
 @csrf 
 <input type="text" name="loginname" placeholder="name">
 <textarea name="body" col="20" row="20" placeholder="treść postu"></textarea> 
 <button>dodaj post</button>
 </form>
 </div>
+
+<?--// href do posta  --?>
+<?--//<a href="{{ route('posts.create') }}">//Dodaj nowy post</a> --?>
+<?--//href do posta --?>
+
+
+
+<div style=" border: 3px solid;">
+<h2>dodawanie postu</h2>
+<form method="POST" action="{{ route('posts.store') }}">
+    @csrf
+    <input type="text" name="title" placeholder="Tytuł">
+    <textarea name="body" placeholder="Treść"></textarea>
+    <button type="submit">Zapisz post</button>
+</form>
+</div>
+
+
 
 <?--//naglowek plik header.blade.php --?>
 @include('footer')
