@@ -9,6 +9,8 @@
 <body>
 
 
+<?--// uzytkownik zalogowany, wyswietlany ponizszy panel --?>
+
 
 @auth 
 <h2> Jesteś zalogowany </h2>
@@ -18,10 +20,16 @@
   <button> Wyloguj </button>
 </form>
 
+<form action="/make_appointment" method="GET" >
+  @csrf
+  <button> UMÓW WIZYTĘ </button>
+</form>
 
+
+<?--// uzytkownik NIE zalogowany, wyswietlany ponizszy panel --?>
 @else
 
-
+<?--// REJESTRACJA --?>
 <div style=" border: 3px solid;">
 
 <h2>Rejestracja</h2>
@@ -33,6 +41,8 @@
 <button>Register</button>
 </form>
 </div>
+
+<?--// LOGOWANIE --?>
 
 <div style=" border: 3px solid;">
 <h2>Logowanie</h2>

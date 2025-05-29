@@ -8,9 +8,19 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
 
-    public function login() {
+    public function login(Request $request) {
+            // pobranie danych z formularza
+        $incomingFields = $request->validate([
+            'loginname' => 'required',
+            'loginpassword' => 'required'
+        ]);
+            // sprawdzanie czy uzytkownik jest w bazie dancyh 
+        if (auth()->attempt(['name' => $incomingFields['loginname'], 'password' => $incomingFields['loginpassword'] ])) { 
+            // regeneracja sesji 
+            $request -> session() -> regenerate();
 
-
+        }
+        return redirect('/');
     }
 
     public function logout() {
@@ -20,11 +30,12 @@ class UserController extends Controller
 
     public function register(Request $request){
         $incomingFields = $request->validate([
+            // przekazanie zmiennych z formularza
             'name' => ['required', 'min:3', 'max:20', Rule::unique('users', 'name')],  
             'email' => ['email', Rule::unique('users','email')],
             'password' => ['required', 'min:8', 'max:200']
         ]);
-
+            // zapis danych z formularza do bazy + enkrypcja
         $incomingFields['password'] = bcrypt($incomingFields['password']);
         $user = User::create($incomingFields);
         auth()->login($user);
