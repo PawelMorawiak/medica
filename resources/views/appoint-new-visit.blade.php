@@ -1,22 +1,30 @@
-<?--//naglowek plik header.blade.php --?>
 @include('header')
-<?--//naglowek plik header.blade.php --?>
 
-umów nową wizytę
+<div class="container my-5">
+    <h2 class="text-center mb-4">Umów nową wizytę</h2>
 
-<div style=" border: 3px solid;">
-<h2>dodawanie wizyty</h2>
-<form action="/make-appointment" method="GET" >
-  @csrf
-<input type="text" name="add-doctor-for-appointment" placeholder="doctor">
-<input type="text" name="add-location-for-appointment" placeholder="location">
-<input type="text" name="add-time-for-appointment" placeholder="time">
-  <button> dodaj wizytę </button>
-</form>
-</body>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="p-4 border rounded shadow bg-white">
+
+                <form action="{{ route('visits.store') }}" method="POST" class="d-flex flex-column gap-3">
+                    @csrf
+
+                    <input type="text" name="specialisation" class="form-control" placeholder="Specjalizacja" required>
+                    <input type="text" name="doctor" class="form-control" placeholder="Lekarz" required>
+                    <input type="text" name="avaliable_date" class="form-control" placeholder="Data dostępności" required>
+                    <input type="text" name="location" class="form-control" placeholder="Lokalizacja" required>
+                    <input type="text" name="avaibaility" class="form-control" placeholder="Dostępność (np. wolna/zajęta)" required>
+
+                    {{-- Jeśli user_id jest pobierany z auth, usuń to pole --}}
+                    <input type="text" name="user" class="form-control" placeholder="Użytkownik">
+
+                    <button type="submit" class="btn btn-success">Dodaj wizytę</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>
 
-
-<?--//naglowek plik header.blade.php --?>
 @include('footer')
-<?--//naglowek plik header.blade.php --?>

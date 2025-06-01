@@ -1,9 +1,9 @@
-<h1> footer page </h1>
-
-<a href="terms-of-use" name="terms-of-use">warunki użytkowania</a>
-<a href="about-us" name="about-us">o nas</a>
-
-
-
-</body>
-</html>
+<footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h5 class="mb-0">© {{ date('Y') }} Portal Medyczny</h5>
+        <div class="d-flex gap-4">
+            <a href="{{ url('terms-of-use') }}" class="text-white text-decoration-none">Warunki użytkowania</a>
+            <a href="{{ url('about-us') }}" class="text-white text-decoration-none">O nas</a>
+        </div>
+    </div>
+</footer>

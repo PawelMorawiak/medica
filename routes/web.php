@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AddVisitController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,21 +39,29 @@ Route::get('/createPost', [PostController::class, 'create'])->name('posts.create
 Route::post('/createPost', [PostController::class, 'store'])->name('posts.store');
 
 // funkcje odnosne dodawania wizyty lekarza 
+//Route::GET('/make-appointment', [AddVisitController::class , 'make-appointment']);
+Route::post('/createAddVisit', [AddVisitController::class, 'AddVisit'])->name('visits.store');
+//Route::get('/appointed-visits', [AddVisitController::class, 'appointedVisits'])->name('visits.appointed');
+Route::get('/visits/{id}/edit', [AddVisitController::class, 'edit'])->name('visits.edit');
+Route::put('/visits/{id}', [AddVisitController::class, 'update'])->name('visits.update');
+Route::delete('/visits/{id}', [AddVisitController::class, 'destroy'])->name('visits.destroy');
+Route::get('/appointed-visits', [AddVisitController::class, 'appointedVisits'])->name('visits.appointed');
 
-Route::GET('/make-appointment', [AddVisitController::class , 'make-appointment']);
+
+
 
 
 // obsługa linków a href z header 
 Route::GET('/main-site', function () {
-return view('main-site');
+return view('home');
 });
 
 Route::GET('/see-profile', function () {
 return view('see-profile');
 });
-Route::GET('/appointed-visits', function () {
-return view('appointed-visits');
-});
+//Route::GET('/appointed-visits', function () {
+//return view('appointed-visits');
+//});
 
 Route::GET('/appoint-new-visit', function () {
 return view('appoint-new-visit');

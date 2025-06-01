@@ -13,14 +13,8 @@ return new class extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->string('specialisation');
-            $table->string('doctor');
-            $table->string('avaliable_date');
-            $table->string('location');
-            $table->string('avaibaility');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-});
+        });
     }
 
     /**
