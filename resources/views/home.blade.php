@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="{{ app()->getLocale() }}"></html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
+
+
 
 @auth
   @include('header')
@@ -24,12 +26,12 @@
       <!-- Dodawanie postu -->
       <div class="col-md-6">
         <div class="p-4 border rounded shadow bg-white">
-          <h4>Dodaj post</h4>
+          <h4>{{ __('messages.add_post') }}</h4>
           <form method="POST" action="{{ route('posts.store') }}">
             @csrf
-            <input type="text" name="title" class="form-control mb-2" placeholder="Tytuł">
-            <textarea name="body" class="form-control mb-3" rows="4" placeholder="Treść"></textarea>
-            <button type="submit" class="btn btn-primary">Zapisz post</button>
+            <input type="text" name="title" class="form-control mb-2" placeholder="{{ __('messages.title') }}">
+            <textarea name="body" class="form-control mb-3" rows="4" placeholder="{{ __('messages.body') }}"></textarea>
+            <button type="submit" class="btn btn-primary">{{ __('messages.save_post') }}</button>
           </form>
         </div>
       </div>

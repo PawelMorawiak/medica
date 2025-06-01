@@ -5,7 +5,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AddVisitController;
 
+use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Route;
+
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 
 Route::get('/', function () {
@@ -75,4 +81,24 @@ Route::GET('/logout-href', function () {
 return view('logout-href');
 });
 
+// obsluga jezeyka   
 
+
+Route::post('/set-locale', function (Request $request) {
+    $locale = $request->input('locale');
+    if (in_array($locale, ['en', 'pl'])) {
+        Session::put('locale', $locale);
+        App::setLocale($locale); // ← ważne!
+    }
+    return back();
+})->name('set.locale');
+
+
+// obsluga email
+
+Route::get('/testroute', function() {
+$name = "Fuccy Coder";
+
+Mail::to('p.morawiak@wp.pl')->send(new MyTestEmail($name));
+
+});
