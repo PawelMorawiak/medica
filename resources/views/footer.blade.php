@@ -4,6 +4,10 @@
         <div class="d-flex gap-4">
             <a href="{{ url('terms-of-use') }}" class="text-white text-decoration-none">Warunki użytkowania</a>
             <a href="{{ url('about-us') }}" class="text-white text-decoration-none">O nas</a>
+            <a href="{{ url('testroute') }}" class="text-white text-decoration-none">email</a>
+                        <a href="{{ url('prescriptions') }}" class="text-white text-decoration-none">api</a>
+   
+
         </div>
     </div>
 </footer>

@@ -102,3 +102,9 @@ $name = "Fuccy Coder";
 Mail::to('p.morawiak@wp.pl')->send(new MyTestEmail($name));
 
 });
+
+// obsluga api
+
+use App\Http\Controllers\Api\PrescriptionController;
+
+Route::apiResource('prescriptions', PrescriptionController::class);
