@@ -16,6 +16,7 @@
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2 class="mb-0">Witaj, {{ auth()->user()->name }}</h2>
+      
       <form action="/logout" method="GET">
         @csrf
         <button class="btn btn-outline-danger">Wyloguj</button>
@@ -36,7 +37,8 @@
         </div>
       </div>
 
-      <!-- Dodawanie wizyty -->
+      <!-- Dodawanie wizyty  +  sprawdzenie admina -->
+           @if(Auth::user()->name === 'testtest') 
       <div class="col-md-6">
         <div class="p-4 border rounded shadow bg-white">
           <h4>Dodaj wizytę</h4>
@@ -53,6 +55,7 @@
           </form>
         </div>
       </div>
+      @endif
     </div>
   </div>
 

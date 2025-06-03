@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
-
+use App\Http\Controllers\VisitManagementController;
 
 Route::get('/', function () {
     return view('home');
@@ -108,3 +108,9 @@ Mail::to('p.morawiak@wp.pl')->send(new MyTestEmail($name));
 use App\Http\Controllers\Api\PrescriptionController;
 
 Route::apiResource('prescriptions', PrescriptionController::class);
+
+
+
+
+Route::get('/manage-visits', [VisitManagementController::class, 'index'])->name('visits.manage');
+Route::post('/visits/{id}/occupy', [VisitManagementController::class, 'markAsOccupied'])->name('visits.occupy');
