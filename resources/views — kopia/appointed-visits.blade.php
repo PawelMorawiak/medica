@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -5,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medica</title>
 
-    {{-- Google Fonts --}}
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    {{-- Bootstrap CSS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         * {
@@ -20,6 +17,8 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            padding: 0 20px 40px 20px;
         }
 
         header {
@@ -77,12 +76,64 @@
             font-size: 18px;
             font-family: 'Montserrat', sans-serif;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #f1f3f5;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .table-actions form {
+            display: inline;
+        }
     </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-{{-- Header --}}
 <header>
     <div class="logo-container">
         <a href="{{ url('/') }}" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
@@ -109,28 +160,28 @@
     </nav>
 </header>
 
-{{-- Tabela wizyt --}}
-<div class="container mt-5">
-    <h2>Lista wszystkich wizyt</h2>
+<h2 style="margin-top: 40px;">Lista wszystkich wizyt</h2>
 
-    @if(session('success'))
-        <div class="alert alert-success mt-3">{{ session('success') }}</div>
-    @endif
+@if(session('success'))
+    <div style="margin-top: 20px; padding: 10px 15px; background-color: #d4edda; color: #155724; border-left: 5px solid #28a745;">
+        {{ session('success') }}
+    </div>
+@endif
 
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Specjalizacja</th>
-                <th>Lekarz</th>
-                <th>Data</th>
-                <th>Lokalizacja</th>
-                <th>Dostępność</th>
-                <th>Akcja</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($visits as $visit)
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Specjalizacja</th>
+            <th>Lekarz</th>
+            <th>Data</th>
+            <th>Lokalizacja</th>
+            <th>Dostępność</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($visits as $visit)
             <tr>
                 <td>{{ $visit->id }}</td>
                 <td>{{ $visit->specialisation }}</td>
@@ -138,23 +189,25 @@
                 <td>{{ $visit->avaliable_date }}</td>
                 <td>{{ $visit->location }}</td>
                 <td>{{ $visit->avaibaility }}</td>
-                <td>
-                    @if($visit->avaibaility !== 'zajęta')
-                        <form action="{{ route('visits.occupy', $visit->id) }}" method="POST">
-                            @csrf
-                            <button class="btn btn-warning btn-sm">Zajmij</button>
-                        </form>
-                    @else
-                        <span class="text-danger">Zajęta</span>
-                    @endif
+                <td class="table-actions">
+                    <a href="{{ route('visits.edit', $visit->id) }}" class="btn btn-primary btn-sm">Edytuj</a>
+
+                    <form action="{{ route('visits.destroy', $visit->id) }}" method="POST" onsubmit="return confirm('Na pewno usunąć?')" style="display:inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm">Usuń</button>
+                    </form>
                 </td>
             </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+        @endforeach
+    </tbody>
+</table>
 
-{{-- Bootstrap JS --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+<?--//naglowek plik header.blade.php --?>
+@include('footer')
+<?--//naglowek plik header.blade.php --?>
+

@@ -114,3 +114,5 @@ Route::apiResource('prescriptions', PrescriptionController::class);
 
 Route::get('/manage-visits', [VisitManagementController::class, 'index'])->name('visits.manage');
 Route::post('/visits/{id}/occupy', [VisitManagementController::class, 'markAsOccupied'])->name('visits.occupy');
+
+Route::post('/visits/{id}/release', [VisitManagementController::class, 'release'])->name('visits.release');

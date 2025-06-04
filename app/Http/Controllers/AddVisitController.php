@@ -50,10 +50,21 @@ public function update(Request $request, $id)
 public function destroy($id)
 {
     $visit = \App\Models\Visit::findOrFail($id);
-    $visit->delete();
-    return redirect()->route('visits.appointed')->with('success', 'Wizyta usunięta.');
-}
+    $visit->avaibaility = 'wolna';
+    $visit->user_id = null; // opcjonalnie: usunięcie przypisania użytkownika
+    $visit->save();
 
+    return redirect()->route('visits.appointed')->with('success', 'Wizyta została oznaczona jako wolna.');
+}
+    public function release($id)
+    {
+        $visit = \App\Models\Visit::findOrFail($id);
+        $visit->avaibaility = 'wolna';
+        $visit->user_id = null;
+        $visit->save();
+
+        return redirect()->route('visits.appointed')->with('success', 'Wizyta została oznaczona jako wolna.');
+    }
 
 }
 
