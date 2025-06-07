@@ -56,6 +56,47 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+
+
+
+
+# Aplikacja Medica
+
+**Projekt zaliczeniowy   
+**Autorzy:** Emilia Małecka, Paweł Morawiak  
+**Rok akademicki:** 2024/2025
+
+---
+
+## 📋 Opis projektu
+
+Medica to aplikacja internetowa wspierająca rejestrację pacjentów na wizyty lekarskie w ramach NFZ. System pozwala na:
+- Rejestrację i logowanie pacjentów,
+- Przeglądanie oraz rezerwowanie dostępnych wizyt,
+- Zarządzanie wizytami przez administratora (placówkę),
+- Dostosowany interfejs dla różnych ról użytkowników,
+- Zabezpieczenia zgodne z dobrymi praktykami Laravel (hashowanie haseł, sesje).
+
+---
+
+## ⚙️ Instrukcja uruchomienia (lokalnie)
+
+### Wymagania:
+- PHP 8.1+
+- Composer
+- MySQL
+- Laravel CLI (opcjonalnie)
+
+### Krok po kroku:
+
+```bash
+git clone https://github.com/twoj-login/medica.git
+cd medica
+composer install
+cp .env.example .env  # lub copy .env.example .env (Windows)
+php artisan key:generate
+
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
